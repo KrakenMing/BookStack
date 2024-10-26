@@ -9,7 +9,7 @@ volumes:
 services:
   db:
     container_name: bookstack-db
-    image: postgres
+    image: postgres:17.0
     environment:
       POSTGRES_DB: bookstackapp
       POSTGRES_USER: bookstack-test
