@@ -13,7 +13,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('external_auth_id')->index();
+            $table->string('external_auth_id')->nullable()->index();
         });
     }
 

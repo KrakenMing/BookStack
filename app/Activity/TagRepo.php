@@ -31,12 +31,12 @@ class TagRepo
         $query = Tag::query()
             ->select([
                 'name',
-                ($searchTerm || $nameFilter) ? 'value' : DB::raw('COUNT(distinct value) as `values`'),
+                ($searchTerm || $nameFilter) ? 'value' : DB::raw('COUNT(distinct value) as \"values\"'),
                 DB::raw('COUNT(id) as usages'),
-                DB::raw('SUM(IF(entity_type = \'page\', 1, 0)) as page_count'),
-                DB::raw('SUM(IF(entity_type = \'chapter\', 1, 0)) as chapter_count'),
-                DB::raw('SUM(IF(entity_type = \'book\', 1, 0)) as book_count'),
-                DB::raw('SUM(IF(entity_type = \'bookshelf\', 1, 0)) as shelf_count'),
+                DB::raw('SUM(CASE WHEN entity_type = \'page\' THEN 1 ELSE 0 END) as page_count'),
+                DB::raw('SUM(CASE WHEN entity_type = \'chapter\' THEN 1 ELSE 0 END) as chapter_count'),
+                DB::raw('SUM(CASE WHEN entity_type = \'book\' THEN 1 ELSE 0 END) as book_count'),
+                DB::raw('SUM(CASE WHEN entity_type = \'bookshelf\' THEN 1 ELSE 0 END) as shelf_count'),
             ])
             ->orderBy($sort, $listOptions->getOrder());
 

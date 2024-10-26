@@ -15,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('slug', 180);
+            $table->string('slug', 180)->nullable();
         });
 
         $slugMap = [];

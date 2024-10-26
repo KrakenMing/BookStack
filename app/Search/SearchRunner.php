@@ -237,7 +237,7 @@ class SearchRunner
         $ifChain = '0';
         $bindings = [];
         foreach ($scoredTerms as $term => $score) {
-            $ifChain = 'IF(term like ?, score * ' . (float) $score . ', ' . $ifChain . ')';
+            $ifChain = 'CASE WHEN term like $'.$i++.' THEN score * ' . (float) $score . ' ELSE (' . $ifChain . ') END';
             $bindings[] = $term . '%';
         }
 

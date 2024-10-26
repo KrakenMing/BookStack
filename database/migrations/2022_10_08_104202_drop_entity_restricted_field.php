@@ -35,11 +35,11 @@ return new class extends Migration
         $defaultEntityPermissionGenQuery = function (Builder $query, string $table, string $morphClass) {
             return $query->select(['id as entity_id'])
                 ->selectRaw('? as entity_type', [$morphClass])
-                ->selectRaw('? as `role_id`', [0])
-                ->selectRaw('? as `view`', [0])
-                ->selectRaw('? as `create`', [0])
-                ->selectRaw('? as `update`', [0])
-                ->selectRaw('? as `delete`', [0])
+                ->selectRaw('?::integer as "role_id"', [0])
+                ->selectRaw('?::boolean as "view"', [0])
+                ->selectRaw('?::boolean as "create"', [0])
+                ->selectRaw('?::boolean as "update"', [0])
+                ->selectRaw('?::boolean as "delete"', [0])
                 ->from($table)
                 ->where('restricted', '=', 1);
         };

@@ -19,13 +19,14 @@ return new class extends Migration
         // Wrapped in try-catch just in the event a different database system is used
         // which does not support InnoDB but does support all required features
         // like foreign key references.
-        try {
-            $prefix = DB::getTablePrefix();
-            DB::statement("ALTER TABLE {$prefix}pages ENGINE = InnoDB;");
-            DB::statement("ALTER TABLE {$prefix}chapters ENGINE = InnoDB;");
-            DB::statement("ALTER TABLE {$prefix}books ENGINE = InnoDB;");
-        } catch (Exception $exception) {
-        }
+        
+        // try {
+        //     $prefix = DB::getTablePrefix();
+        //     DB::statement("ALTER TABLE {$prefix}pages ENGINE = InnoDB;");
+        //     DB::statement("ALTER TABLE {$prefix}chapters ENGINE = InnoDB;");
+        //     DB::statement("ALTER TABLE {$prefix}books ENGINE = InnoDB;");
+        // } catch (Exception $exception) {
+        // }
 
         // Here we have table drops before the creations due to upgrade issues
         // people were having due to the bookshelves_books table creation failing.

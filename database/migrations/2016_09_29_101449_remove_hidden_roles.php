@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -27,6 +29,7 @@ return new class extends Migration
         $publicUserId = DB::table('users')->insertGetId([
             'email'           => 'guest@example.com',
             'name'            => 'Guest',
+            'password'        => Hash::make(Str::random(32)),
             'system_name'     => 'public',
             'email_confirmed' => true,
             'created_at'      => \Carbon\Carbon::now(),
